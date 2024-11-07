@@ -24,11 +24,20 @@
 
 import React from "react";
 import { Amplify } from "aws-amplify";
-import "./app.css";
+// import "./app.css";
 import { Authenticator } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
 import outputs from "@/amplify_outputs.json";
 import Header from "./templates/header";
+
+import { useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
+import Head from 'next/head';  
+
+
+import '../styles/global.css'; 
+import Footer from "./templates/footer";
+
 
 Amplify.configure(outputs);
 
@@ -37,12 +46,36 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const pathname = usePathname();
+  // console.log(pathname)
+  const [user, setUser] = useState<{ name: string } | null>(null); 
+  const generateTitle = () => {
+    if (user) {
+      return `${user.name}'s Dashboard`;  // Dynamic title based on the user
+    }
+    const route = pathname;
+    if (route === '/dashboard') {
+      return 'Dashboard';
+    }
+    if (route === '/users') {
+      return 'User';
+    }
+    return 'my App';  // Default title
+  };
+const title = generateTitle();
+
   return (
     <html lang="en">
+      <Head>
+      <title>{title}</title>   {/* Set the dynamic title */}
+      {/* <meta name="description" content="User's Dashboard" /> */}
+      </Head>
+      
       <body>  
-        <Header />
         <Authenticator>
-          {children}
+          <Header />
+          {children}  {/* Render children here */}
+          <Footer />
         </Authenticator>
       </body>
     </html>
