@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import type { Schema } from "@/amplify/data/resource";
 import { generateClient } from "aws-amplify/data";
+import Link from 'next/link'
 
 const client = generateClient<Schema>();
 
@@ -51,7 +52,18 @@ export default function UserAddPage() {
 
   return (
     <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg shadow-lg">
-      <h1 className="text-3xl font-bold text-center text-gray-800">Add User</h1>
+       <div className="p-4  flex justify-between items-center">
+        <div>
+            <h1 className="text-2xl font-bold mb-4">Add User</h1>
+        </div>
+      <div>
+          <Link href="/users">
+            <button className="px-4 py-2 bg-blue-500 text-white font-semibold">
+                Back
+            </button>
+          </Link>
+            </div>
+      </div>
       
       {/* Error Message */}
       {error && <p className="text-red-500 text-sm text-center mt-2">{error}</p>}

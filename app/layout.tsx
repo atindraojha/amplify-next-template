@@ -29,6 +29,7 @@ import { Authenticator } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
 import outputs from "@/amplify_outputs.json";
 import Header from "./templates/header";
+import Sidebar from "./templates/sidebar";
 
 import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
@@ -73,9 +74,17 @@ const title = generateTitle();
       
       <body>  
         <Authenticator>
+        <div className="flex flex-col h-screen">
           <Header />
-          {children}  {/* Render children here */}
+          <div className="flex flex-grow">
+
+            <Sidebar />
+            <main className="flex-grow p-6">
+              {children}  {/* Render children here */}
+            </main>
+          </div>
           <Footer />
+        </div>
         </Authenticator>
       </body>
     </html>
