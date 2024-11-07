@@ -11,6 +11,10 @@ enum Gender {
   FEMALE = 'FEMALE',
   UNKNOWN = 'UNKNOWN',
 }
+
+const genderEnumValues = Object.values(Gender);
+
+
 const schema = a.schema({
   Todo: a
     .model({
@@ -29,7 +33,7 @@ const schema = a.schema({
       pet_name: a.string().required(),
       species: a.string(),
       breed: a.string(),
-      gender: a.enum(Gender),
+      gender: a.enum(genderEnumValues),
       age: a.integer(),
       nickname: a.string(),
       profile_photo: a.string(),
