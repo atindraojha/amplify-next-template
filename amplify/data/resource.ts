@@ -6,13 +6,6 @@ adding a new "isDone" field as a boolean. The authorization rule below
 specifies that any user authenticated via an API key can "create", "read",
 "update", and "delete" any "Todo" records.
 =========================================================================*/
-enum Gender {
-  MALE = 'MALE',
-  FEMALE = 'FEMALE',
-  UNKNOWN = 'UNKNOWN',
-}
-
-const genderEnumValues = Object.values(Gender);
 
 
 const schema = a.schema({
@@ -33,7 +26,7 @@ const schema = a.schema({
       pet_name: a.string().required(),
       species: a.string(),
       breed: a.string(),
-      gender: a.enum(genderEnumValues),
+      gender: a.enum(['Male', 'Female', 'Other']),
       age: a.integer(),
       nickname: a.string(),
       profile_photo: a.string(),

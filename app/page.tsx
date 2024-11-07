@@ -46,13 +46,13 @@ export default function App() {
   // users
   const [users, setUsers] = useState<Array<Schema["Users"]["type"]>>([]);
 
-  function createUsers() {
-    client.models.Users.create({
-      name: window.prompt("name"),
-      email: window.prompt("email"),
-      password: window.prompt("password"),
-    });
-  }
+  // function createUsers() {
+  //   client.models.Users.create({
+  //     name: window.prompt("name"),
+  //     email: window.prompt("email"),
+  //     password: window.prompt("password"),
+  //   });
+  // }
 
   function listUsers() {
     client.models.Users.observeQuery().subscribe({
@@ -84,7 +84,7 @@ export default function App() {
       {authStatus === "authenticated" ? (
         <div>
           <h2>My Users</h2>
-          <button onClick={createUsers}>+ New User</button>
+          <button >+ New User</button>
           <ul>
             {users.map((user) => (
               <li key={user.id}>

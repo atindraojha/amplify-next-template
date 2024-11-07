@@ -37,8 +37,10 @@ const EditUserPage = () => {
         try {
           setLoading(true);
           if (userId) {
+            const userIdString = Array.isArray(userId) ? userId[0] : userId;
+
             // Fetch user by ID
-            const userData = await client.models.Users.get({ id: userId });  // Query user from DataStore by userId
+            const userData = await client.models.Users.get({ id: userIdString });  // Query user from DataStore by userId
 
             // console.log(userData.data)
             
