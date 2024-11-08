@@ -7,7 +7,6 @@ import { generateClient } from "aws-amplify/data";
 
 
 import Link from 'next/link'
-import { DataStore } from '@aws-amplify/datastore';
 
 
 const client = generateClient<Schema>();
@@ -99,18 +98,18 @@ const EditUserPage = () => {
     return (
       <div className="max-w-md mx-auto p-6 bg-white shadow-md rounded-md">
         <div className="p-4  flex justify-between items-center">
-        <div>
-            <h1 className="text-2xl font-bold mb-4">Edit User</h1>
-        </div>
-
-        <div>
-                <Link href="/users">
-                  <button className="px-4 py-2 bg-blue-500 text-white font-semibold">
-                      Back
-                  </button>
-                </Link>
-            </div>
+          <div>
+              <h1 className="text-2xl font-bold mb-4">Edit User</h1>
           </div>
+
+          <div>
+            <Link href="/users">
+              <button className="px-4 py-2 bg-blue-500 text-white font-semibold">
+                  Back
+              </button>
+            </Link>
+          </div>
+        </div>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label htmlFor="name" className="block text-sm font-medium text-gray-700">

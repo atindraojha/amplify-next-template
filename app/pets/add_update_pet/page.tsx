@@ -5,12 +5,9 @@ import { useRouter } from 'next/navigation';
 import type { Schema } from "@/amplify/data/resource";
 import { generateClient } from "aws-amplify/data";
 import Link from 'next/link'
-// import { Storage } from 'aws-amplify';
+
 import { getUrl, remove, uploadData } from "aws-amplify/storage";
 // file uplaod
-// import { FileUploader } from '@aws-amplify/ui-react-storage';
-// import { uploadData } from "aws-amplify/storage";
-
 
 const client = generateClient<Schema>();
 
@@ -124,7 +121,9 @@ export default function PetAddPage() {
           <input
             type="text"
             id="pet_name"
+            name="pet_name"
             value={pet_name}
+            
             onChange={(e) => setPetName(e.target.value)}
             required
             className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-600"
@@ -136,7 +135,9 @@ export default function PetAddPage() {
           <input
             type="text"
             id="species"
+            name="species"
             value={species}
+            required
             onChange={(e) => setSpecies(e.target.value)}
             
             className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-600"
@@ -148,7 +149,9 @@ export default function PetAddPage() {
           <input
             type="text"
             id="breed"
+            name="breed"
             value={breed}
+            required
             onChange={(e) => setBreed(e.target.value)}
             
             className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-600"
@@ -156,7 +159,13 @@ export default function PetAddPage() {
         </div>
         <div>
         <label htmlFor="gender" className="block text-sm font-medium text-gray-700">Gender</label>
-        <select id="gender" value={gender ?? ''} onChange={(e) => setGender(e.target.value as 'Male' | 'Female' | 'Other' | null)}  className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-600">
+        <select 
+        id="gender" 
+        name="gender" 
+        value={gender ?? ''} 
+        onChange={(e) => setGender(e.target.value as 'Male' | 'Female' | 'Other' | null)}  
+        required
+        className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-600">
             <option value="">Select Gender</option>
             <option value="Male">Male</option>
             <option value="Female">Female</option>
@@ -167,7 +176,9 @@ export default function PetAddPage() {
           <input
             type="number"
             id="age"
+            name="age"
             value={age}
+            required
             onChange={(e) => setAge(parseInt(e.target.value, 0))}
             
             className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-600"
@@ -178,7 +189,9 @@ export default function PetAddPage() {
           <input
             type="text"
             id="nickname"
+            name="nickname"
             value={nickname}
+            required
             onChange={(e) => setNickname(e.target.value)}
             
             className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-600"
@@ -189,7 +202,9 @@ export default function PetAddPage() {
           <input
             type="file"
             id="profile_photo"
+            name="profile_photo"
             accept="image/*"
+            required
             onChange={handleFileChange}
             // onInput={setProfilePhoto(e.target.value)}
             
@@ -211,7 +226,9 @@ export default function PetAddPage() {
           <input
             type="text"
             id="profile_bio"
+            name="profile_bio"
             value={profile_bio}
+            required
             onChange={(e) => setProfileBio(e.target.value)}
             
             className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-600"
@@ -222,7 +239,9 @@ export default function PetAddPage() {
           <input
             type="date"
             id="added_date"
+            name="added_date"
             value={added_date}
+            required
             onChange={(e) => setAddedDate(e.target.value)}
             
             className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-600"
